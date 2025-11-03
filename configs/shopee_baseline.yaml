@@ -1,0 +1,23 @@
+# configs/shopee_baseline.yaml
+
+general:
+  experiment_name: "shopee_baseline_tfidf_effnet"
+  seed: 42
+
+data:
+  path: "data/shopee-product-matching/"
+  train_file: "train.csv"
+  images_path: "train_images/"
+  fold_strategy: "GroupKFold"
+  group_col: "label_group"
+  n_splits: 5
+
+model:
+  text_model: "tfidf"
+  image_model: "efficientnet_b0"
+  embedding_size: 1280
+
+train_params:
+  epochs: 10
+  batch_size: 32
+  learning_rate: 0.001
