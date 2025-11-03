@@ -29,16 +29,16 @@ def create_folds(config):
     #    Название файла должно быть уникальным для эксперимента.
     #
     # Пример для StratifiedKFold:
-    # skf = StratifiedKFold(n_splits=config['data']['n_splits'], shuffle=True, random_state=config['general']['seed'])
-    # for fold, (train_idx, val_idx) in enumerate(skf.split(df, df['label_group'])):
-    #     df.loc[val_idx, 'fold'] = fold
+    skf = StratifiedKFold(n_splits=config['data']['n_splits'], shuffle=True, random_state=config['general']['seed'])
+    for fold, (train_idx, val_idx) in enumerate(skf.split(df, df['label_group'])):
+        df.loc[val_idx, 'fold'] = fold
     # ===================================================================
     
     # TODO: Ваш код здесь
     
     # Пример сохранения
-    # output_path = f"folds_{config['general']['experiment_name']}.csv"
-    # df.to_csv(output_path, index=False)
-    # print(f"Folds saved to {output_path}")
+    output_path = f"folds_{config['general']['experiment_name']}.csv"
+    df.to_csv(output_path, index=False)
+    print(f"Folds saved to {output_path}")
 
     raise NotImplementedError("Пожалуйста, реализуйте логику создания фолдов в src/data/folds.py")
